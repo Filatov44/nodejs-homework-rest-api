@@ -10,6 +10,7 @@ const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
 
 app.use(logger(formatsLogger))
 app.use(cors())
+// app.use(express.json()) смотрит за тем, что если тело запроса имеет content-type: json, он обрабляет его в json.parse
 app.use(express.json())
 
 app.use('/api/contacts', contactsRouter)

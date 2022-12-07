@@ -44,16 +44,16 @@ async function removeContact(contactId) {
 }
 
 // const addContact = async (body) => {}
-async function addContact(name, email, phone) {
-  if (!name) {
-    return "\x1B[31m name is required";
-  }
-  if (!email) {
-    return "\x1B[31m email is required";
-  }
-  if (!phone) {
-    return "\x1B[31m phone is required";
-  }
+async function addContact({ name, email, phone }) {
+  // if (!name) {
+  //   return "\x1B[31m name is required";
+  // }
+  // if (!email) {
+  //   return "\x1B[31m email is required";
+  // }
+  // if (!phone) {
+  //   return "\x1B[31m phone is required";
+  // }
   // const isValidEmail = validator.isEmail(email);
   // if (!isValidEmail) {
   //   return "\x1B[31m email entered incorrectly";
