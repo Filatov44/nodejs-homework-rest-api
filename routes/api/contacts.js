@@ -58,17 +58,43 @@ router.post("/", async (req, res, next) => {
     const result = await contacts.addContact(req.body);
     res.status(201).json(result);
   } catch (error) {
+    next(error);
+  }
+});
+
+router.delete("/:contactId", async (req, res, next) => {
+  try {
+    const { contactId } = req.params;
+    const result = await contacts.removeContact(contactId);
+    if (!result) {
+      throw httpError(400, "Not found");
+    }
+    res.json({ message: "contact deleted" });
+
+    // если надо отправить статус 204, то тело ({ message: "Delite contact"}) не отправится. Пример ниже
+    // res.json({ message: "Delite contact"})
+  } catch (error) {
     next(error)
   }
  
 });
 
-router.delete("/:contactId", async (req, res, next) => {
-  res.json({ message: "template message" });
-});
-
 router.put("/:contactId", async (req, res, next) => {
-  res.json({ message: "template message" });
+  try {
+    // Не применяю у себя эту схему валидации в апдейте потому что в updateContact у меня поддягивает старые значения с полей
+    // const { error } = joiSchema.validate(req.body);
+    // if (error) {
+    //   throw httpError(400, error.message);
+    // }
+    const { contactId } = req.params;
+    const result = await contacts.updateContact(contactId, req.body);
+    if (!result) {
+      throw httpError(404, "Not found");
+    }
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = router;

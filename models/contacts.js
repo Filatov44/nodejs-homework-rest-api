@@ -45,27 +45,7 @@ async function removeContact(contactId) {
 
 // const addContact = async (body) => {}
 async function addContact({ name, email, phone }) {
-  // if (!name) {
-  //   return "\x1B[31m name is required";
-  // }
-  // if (!email) {
-  //   return "\x1B[31m email is required";
-  // }
-  // if (!phone) {
-  //   return "\x1B[31m phone is required";
-  // }
-  // const isValidEmail = validator.isEmail(email);
-  // if (!isValidEmail) {
-  //   return "\x1B[31m email entered incorrectly";
-  // }
-
-  //   const isValidName = validator.contains(name);
-  // const isValidPhone = validator.isMobilePhone(String(phone));
-
-  // if (!isValidPhone) {
-  //   return "\x1B[31m phone number entered incorrectly";
-  // }
-
+  
   const contacts = await listContacts();
   const newContact = {
     id: v4(),
@@ -82,13 +62,14 @@ async function addContact({ name, email, phone }) {
 
 
 // const updateContact = async (contactId, body) => {}
-async function updateContact(id, data) {
+async function updateContact(id,  data ) {
   const idContact = String(id);
   const contacts = await listContacts();
   const index = contacts.findIndex((item) => item.id === idContact);
   if (index === -1) {
     return null;
   }
+  console.log(data);
   // console.log(contacts[index]);
   const existName = contacts[index].name;
   const existEmail = contacts[index].email;
@@ -100,17 +81,6 @@ async function updateContact(id, data) {
     email: data.email ?? existEmail,
     phone: String(data.phone ?? existPhone),
   };
-  // console.log(contacts);
-  // const isValidEmail = validator.isEmail(contacts[index].email);
-  // if (!isValidEmail) {
-  //   return "\x1B[31m email entered incorrectly";
-  // }
-
-  // const isValidPhone = validator.isMobilePhone(String(contacts[index].phone));
-  // console.log(contacts[index].phone);
-  // if (!isValidPhone) {
-  //   return "\x1B[31m phone number entered incorrectly";
-  // }
 
   await reUpdateContacts(contacts);
   return contacts[index];
