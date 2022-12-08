@@ -60,15 +60,6 @@
     "phone": "(748) 206-2688"
   },
   {
-    "id": "1c08a1a0-e231-43b1-9a47-1f0a764d7798",
-    "name": {
-      "name": "Mike Tyson",
-      "email": "tyson.power@mail.com",
-      "phone": "(294) 333-2222"
-    },
-    "phone": "undefined"
-  },
-  {
     "id": "7d479399-337a-44c2-9451-c6f3bec4e6a0",
     "name": "Mike Tyson",
     "email": "tyson.power@mail.com",
@@ -79,5 +70,11 @@
     "name": "Cristiano Ronaldo",
     "email": "cr7@mail.com",
     "phone": "(666) 123-4567"
+  },
+  {
+    "id": "f0070696-2503-4c20-ba51-c0a3b9fb294d",
+    "name": "Leo Messi",
+    "email": "leo_messi_psg@mail.com",
+    "phone": "066099050"
   }
 ]
