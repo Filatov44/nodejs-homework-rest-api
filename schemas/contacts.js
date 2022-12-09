@@ -12,7 +12,12 @@ const JoiSchemaUpdate = Joi.object({
   phone: Joi.number().integer(),
 });
 
+const JoiSchemaParams = Joi.object({
+  contactId: Joi.string().empty(),
+});
+
 module.exports = {
   joiSchema,
   JoiSchemaUpdate,
+  JoiSchemaParams,
 };
