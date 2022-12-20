@@ -1,15 +1,13 @@
-
-// Импортируем модель
 const Contact = require("../../models/contact");
 
 const { httpError } = require("../../helpers");
 
-
-const updateContact = async (req, res, next) => {
+const updateStatusContact = async (req, res, next) => {
   try {
-   
     const { contactId } = req.params;
-    const result = await Contact.findByIdAndUpdate(contactId, req.body, {new: true});
+    const result = await Contact.findByIdAndUpdate(contactId, req.body, {
+      new: true,
+    });
     if (!result) {
       throw httpError(404, "Not found");
     }
@@ -19,4 +17,4 @@ const updateContact = async (req, res, next) => {
   }
 };
 
-module.exports = updateContact;
+module.exports = updateStatusContact;
