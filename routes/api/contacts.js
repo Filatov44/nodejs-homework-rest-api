@@ -10,6 +10,7 @@ const router = express.Router();
 
 router.get("/", ctrlContacts.getAll);
 
+
 router.get("/:contactId", validateParams, ctrlContacts.getById);
 
 router.post("/", validateBody(schemas.joiSchema), ctrlContacts.addContact);

@@ -8,4 +8,4 @@ contactSchema.post("save", handleMongooseError);
 // "contact" название коллекции к которой нужно подключиться, contactSchema - схема
 const Contact = model("contact", contactSchema);
 
-module.export = Contact;
+module.exports = Contact;
