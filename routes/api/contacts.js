@@ -2,21 +2,38 @@ const express = require("express");
 
 const ctrlContacts = require("../../controllers/contacts");
 
-const { validateParams, validateBody, validateParamsForMangoose } = require("../../middlewares");
+const {
+  validateParams,
+  validateBody,
+  validateParamsForMangoose,
+  authenticate,
+} = require("../../middlewares");
 
 const schemas = require("../../schemas/contacts");
 
 const router = express.Router();
 
-router.get("/", ctrlContacts.getAll);
+router.get("/", authenticate, ctrlContacts.getAll);
 
 
-router.get("/:contactId", validateParams(schemas.JoiSchemaParams), validateParamsForMangoose , ctrlContacts.getById);
+router.get(
+  "/:contactId",
+  authenticate,
+  validateParams(schemas.JoiSchemaParams),
+  validateParamsForMangoose,
+  ctrlContacts.getById
+);
 
-router.post("/", validateBody(schemas.joiSchema), ctrlContacts.addContact);
+router.post(
+  "/",
+  authenticate,
+  validateBody(schemas.joiSchema),
+  ctrlContacts.addContact
+);
 
 router.delete(
   "/:contactId",
+  authenticate,
   validateParams(schemas.JoiSchemaParams),
   validateParamsForMangoose,
   ctrlContacts.removeContact
@@ -24,6 +41,7 @@ router.delete(
 
 router.put(
   "/:contactId",
+  authenticate,
   validateParams(schemas.JoiSchemaParams),
   validateParamsForMangoose,
   validateBody(schemas.JoiSchemaUpdate),
@@ -32,6 +50,7 @@ router.put(
 
 router.patch(
   "/:contactId/favorite",
+  authenticate,
   validateParams(schemas.JoiSchemaParams),
   validateParamsForMangoose,
   validateBody(schemas.updateFavoriteSchema),

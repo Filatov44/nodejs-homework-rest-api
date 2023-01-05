@@ -9,12 +9,13 @@ const register = async (req, res) => {
   const user = await User.findOne({ email });
   if (user) {
     throw httpError(409, "Email in use");
-    }
+  }
+  
     // хэшуем пароль. 10- сложность соли(добавка при хэшировании для усложнения взлома)
     const hashPassword = await bcrypt.hash(password, 10);
 
     const newUser = await User.create({ ...req.body, password: hashPassword });
-    // console.log(newUser.subscription);
+    
    
 
     res.status(201).json({

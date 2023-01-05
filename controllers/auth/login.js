@@ -23,7 +23,8 @@ const login = async (req, res) => {
     }
 
     // если все ок создаем токен и возвращаем его
-    const token = jwt.sign(payload, SECRET_KEY, {expiresIn: "23h"});
+    const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "23h" });
+    await User.findByIdAndUpdate(user._id, { token });
 
     res.json({ token });
 }
