@@ -14,4 +14,7 @@ const router = express.Router();
 // signup
 router.post("/signup", validateBody(schemas.joiRegisterSchema), ctrlAuth.register);
 
+// signin
+router.post("/login", validateBody(schemas.joiLoginSchema), ctrlAuth.login);
+
 module.exports = router;
