@@ -3,7 +3,8 @@ const express = require("express");
 const ctrlAuth = require("../../controllers/auth");
 const {
 //   validateParams,
-  validateBody,
+  validateBody, 
+  authenticate,
 //   validateParamsForMangoose,
 } = require("../../middlewares");
 
@@ -16,5 +17,11 @@ router.post("/signup", validateBody(schemas.joiRegisterSchema), ctrlAuth.registe
 
 // signin
 router.post("/login", validateBody(schemas.joiLoginSchema), ctrlAuth.login);
+
+// current
+router.get("/current", authenticate, ctrlAuth.getCurrent);
+
+// logout
+router.post("/logout", authenticate, ctrlAuth.logout);
 
 module.exports = router;

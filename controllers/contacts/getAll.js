@@ -14,11 +14,11 @@ const getAll = async (req, res, next) => {
     // если передать так: .find({}, "-name -email") вернет все кроме этих полей
     // console.log(Contact);
     // 3-им параметром в файнд можно передать обьект настроек. skip - сколько пропустить. limit - сколько взять
-    // { skip: 2, limit: 2} означает что 1,2 прпущу, а возьму 3-4
+    // { skip: 2, limit: 2} означает что 1,2 прпущу, а возьму 3-4; populate- расширить запрос. Вставляет объект вместо ИД при гет запросе. 
     const result = await Contact.find({ owner }, "-createdAt -updatedAt", {
       skip,
       limit,
-    });
+    }).populate("owner", "name email");
     // console.log(result);
     res.json(result);
   } catch (error) {
