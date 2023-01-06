@@ -9,6 +9,9 @@ const register = async (req, res) => {
   const user = await User.findOne({ email });
   if (user) {
     throw httpError(409, "Email in use");
+    // res.status(409).json({
+    //   message: "Email in use",
+    // });
   }
   
     // хэшуем пароль. 10- сложность соли(добавка при хэшировании для усложнения взлома)
