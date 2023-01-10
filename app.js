@@ -4,7 +4,9 @@ const cors = require('cors')
 
 require("dotenv").config();
 
-const contactsRouter = require('./routes/api/contacts')
+const contactsRouter = require('./routes/api/contacts');
+const authRouter = require("./routes/api/auth");
+const { authenticate } = require("./middlewares");
 
 const app = express()
 
@@ -15,7 +17,8 @@ app.use(cors())
 // app.use(express.json()) смотрит за тем, что если тело запроса имеет content-type: json, он обрабляет его в json.parse
 app.use(express.json())
 
-app.use('/api/contacts', contactsRouter)
+app.use('/api/contacts', authenticate, contactsRouter);
+app.use('/api/users', authRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found' })
