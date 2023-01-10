@@ -16,6 +16,8 @@ app.use(logger(formatsLogger))
 app.use(cors())
 // app.use(express.json()) смотрит за тем, что если тело запроса имеет content-type: json, он обрабляет его в json.parse
 app.use(express.json())
+// открываем папку для расдачи
+app.use(express.static("public"));
 
 app.use('/api/contacts', authenticate, contactsRouter);
 app.use('/api/users', authRouter);

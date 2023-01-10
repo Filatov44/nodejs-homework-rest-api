@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const User = require("../../models/user");
 const { httpError } = require("../../helpers");
+const gravatar = require("gravatar");
 
 
 const register = async (req, res) => {
@@ -16,8 +17,12 @@ const register = async (req, res) => {
   
     // хэшуем пароль. 10- сложность соли(добавка при хэшировании для усложнения взлома)
     const hashPassword = await bcrypt.hash(password, 10);
-
-    const newUser = await User.create({ ...req.body, password: hashPassword });
+  const avatarURL = gravatar.url(email);
+    const newUser = await User.create({
+      ...req.body,
+      password: hashPassword,
+      avatarURL,
+    });
     
    
 

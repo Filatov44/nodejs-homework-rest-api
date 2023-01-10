@@ -6,6 +6,7 @@ const ctrlAuth = require("../../controllers/auth");
 const {
   validateBody, 
   authenticate,
+  upload,
 } = require("../../middlewares");
 
 const schemas = require("../../schemas/users");
@@ -30,5 +31,8 @@ router.get("/current", authenticate, ctrlWrapper(ctrlAuth.getCurrent));
 
 // logout
 router.post("/logout", authenticate, ctrlWrapper(ctrlAuth.logout));
+
+// avatar
+router.patch("/avatars", authenticate, upload.single("avatar"), ctrlWrapper(ctrlAuth.updateAvatar))
 
 module.exports = router;
