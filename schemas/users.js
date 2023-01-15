@@ -12,7 +12,12 @@ const joiLoginSchema = Joi.object({
   password: Joi.string().required(),
 });
 
+const joiVerifyEmailSchema = Joi.object({
+  email: Joi.string().pattern(emailRegexp).required(),
+});
+
 module.exports = {
-    joiRegisterSchema,
-    joiLoginSchema
+  joiRegisterSchema,
+  joiLoginSchema,
+  joiVerifyEmailSchema,
 };

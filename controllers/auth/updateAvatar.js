@@ -19,7 +19,7 @@ const updateAvatar = async (req, res) => {
     .then((image) => {
       return image.resize(250, 250).write(resultUpload);
     })
-      .catch((error) =>  console.error(error) );
+    .catch((error) => console.error(error));
 
   // перемещаем файл в нужную папку
   await fs.rename(tempUpload, resultUpload);
