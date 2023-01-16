@@ -1,4 +1,3 @@
-
 // Импортируем модель
 const Contact = require("../../models/contact");
 
@@ -12,7 +11,6 @@ const removeContact = async (req, res, next) => {
       throw httpError(400, "Not found");
     }
     res.json({ message: "contact deleted" });
-
   } catch (error) {
     next(error);
   }

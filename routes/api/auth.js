@@ -3,11 +3,7 @@ const express = require("express");
 const { ctrlWrapper } = require("../../helpers");
 
 const ctrlAuth = require("../../controllers/auth");
-const {
-  validateBody, 
-  authenticate,
-  upload,
-} = require("../../middlewares");
+const { validateBody, authenticate, upload } = require("../../middlewares");
 
 const schemas = require("../../schemas/users");
 
@@ -24,7 +20,8 @@ router.post(
 router.post(
   "/login",
   validateBody(schemas.joiLoginSchema),
-  ctrlWrapper(ctrlAuth.login));
+  ctrlWrapper(ctrlAuth.login)
+);
 
 // current
 router.get("/current", authenticate, ctrlWrapper(ctrlAuth.getCurrent));
@@ -33,6 +30,21 @@ router.get("/current", authenticate, ctrlWrapper(ctrlAuth.getCurrent));
 router.post("/logout", authenticate, ctrlWrapper(ctrlAuth.logout));
 
 // avatar
-router.patch("/avatars", authenticate, upload.single("avatar"), ctrlWrapper(ctrlAuth.updateAvatar))
+router.patch(
+  "/avatars",
+  authenticate,
+  upload.single("avatar"),
+  ctrlWrapper(ctrlAuth.updateAvatar)
+);
+
+// verification
+router.get("/verify/:verificationToken", ctrlWrapper(ctrlAuth.verifyEmail));
+
+// repeated verification
+router.post(
+  "/verify",
+  validateBody(schemas.joiVerifyEmailSchema),
+  ctrlWrapper(ctrlAuth.resendVerifyEmail)
+);
 
 module.exports = router;

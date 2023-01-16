@@ -4,7 +4,6 @@
 // Импортируем модель
 const Contact = require("../../models/contact");
 
-
 const addContact = async (req, res, next) => {
   try {
     // информация пользователя который делает запрос

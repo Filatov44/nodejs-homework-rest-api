@@ -16,7 +16,6 @@ const router = express.Router();
 
 router.get("/", ctrlWrapper(ctrlContacts.getAll));
 
-
 router.get(
   "/:contactId",
   validateParams(schemas.JoiSchemaParams),

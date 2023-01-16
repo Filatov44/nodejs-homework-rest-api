@@ -1,6 +1,5 @@
 const { httpError } = require("../helpers");
 
-
 const validateParams = (schema) => {
   const func = (req, res, next) => {
     const { error } = schema.validate(req.params);
@@ -15,5 +14,3 @@ const validateParams = (schema) => {
 };
 
 module.exports = validateParams;
-
-
